@@ -72,7 +72,7 @@ ping:
 providers:
   providersThrottleDuration: "2s"
   file:
-    filename: "/etc/traefik/traefik.dynamic.toml"
+    filename: "/etc/traefik/traefik.dynamic.yml"
     watch: true
   docker:
     endpoint: "unix:///var/run/docker.sock"
