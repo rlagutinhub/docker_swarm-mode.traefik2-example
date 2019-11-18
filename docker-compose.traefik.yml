@@ -82,7 +82,7 @@ configs:
     external: true
   traefik_default.key.2019-11-18:
     external: true
-  traefik_hello.devops.gkh.mos.ru.crt.2019-11-18:
+  traefik_hello.dev.mta4.ru.crt.2019-11-18:
     external: true
-  traefik_hello.devops.gkh.mos.ru.key.2019-11-18:
+  traefik_hello.dev.mta4.ru.key.2019-11-18:
     external: true
