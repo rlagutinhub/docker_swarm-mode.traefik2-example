@@ -3,7 +3,8 @@ services:
   srv:
     image: traefik:latest
     command:
-      - "--configFile=/etc/traefik/traefik.toml"
+      # - "--configFile=/etc/traefik/traefik.toml"
+      - "--configFile=/etc/traefik/traefik.yml"
     ports:
       - target: 80
         published: 80
