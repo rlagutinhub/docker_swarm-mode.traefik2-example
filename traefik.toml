@@ -46,7 +46,7 @@
         idleTimeout = "360s"
 
 [log]
-  level = "DEBUG" # DEBUG, INFO, WARN, ERROR, FATAL, PANIC
+  level = "INFO" # DEBUG, INFO, WARN, ERROR, FATAL, PANIC
   filePath = "/logs/traefik/traefik.log"
   format   = "common"
 
@@ -83,7 +83,6 @@
     swarmMode = true
     # useBindPortIP = false
     exposedByDefault = false
-    network = "proxy"
     swarmModeRefreshSeconds = "15s"
   [providers.rest]
     insecure = true
