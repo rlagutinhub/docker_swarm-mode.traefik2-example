@@ -87,6 +87,7 @@ docker node inspect --format='{{json .Spec.Labels}}' docker-srv1.mta4.ru
 docker stack deploy --compose-file docker-compose.yml traefik
 docker stack rm traefik
 
+docker build -t hello -f Dockerfile .
 docker stack deploy --compose-file docker-compose.app.yml hello
 docker stack rm hello
 
