@@ -1,0 +1,35 @@
+version: '3.7'
+services:
+  app:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+       - proxy
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+      labels:
+        - "traefik.enable=true"
+        - "traefik.tcp.routers.mysql_tcp.rule=HostSNI(`*`)"
+        - "traefik.tcp.routers.mysql_tcp.entrypoints=tcp30001"
+        # - "traefik.tcp.routers.mysql_tcp.service=mysql_service"
+        # - "traefik.tcp.routers.mysql_tcp.tls=true"
+        # - "traefik.tcp.routers.mysql_tcp.tls.options=mintls13@file"
+        # - "traefik.tcp.routers.mysql_tcp.tls.passthrough=true"
+        - "traefik.tcp.services.mysql.loadbalancer.server.port=3306"
+        - "traefik.tcp.services.mysql.loadbalancer.terminationdelay=100"
+      placement:
+        constraints: [node.role == manager]
+networks:
+  proxy:
+    external: true
