@@ -21,6 +21,9 @@ services:
         - "traefik.http.routers.hello_http.entrypoints=http"
         - "traefik.http.services.hello.loadbalancer.server.port=8000"
         - "traefik.http.services.hello.loadbalancer.passhostheader=true"
+        - "traefik.http.services.hello.loadbalancer.sticky=true"
+        - "traefik.http.services.hello.loadbalancer.sticky.cookie.name=cookie-hello"
+        - "traefik.http.services.hello.loadbalancer.sticky.cookie.httponly=true"
       placement:
         constraints: [node.role == manager]
 networks:
