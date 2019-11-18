@@ -1,0 +1,80 @@
+version: '3.7'
+services:
+  srv:
+    image: traefik:latest
+    command:
+      - "--configFile=/etc/traefik/traefik.toml"
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+      - target: 443
+        published: 443
+        protocol: tcp
+        mode: host
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+    networks:
+       - proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /data/logs:/logs:rw
+      # - /data/tmp:/tmp:rw
+    configs:
+      - source: traefik.toml.2019-11-18
+        target: /etc/traefik/traefik.toml
+      - source: traefik.dynamic.toml.2019-11-18
+        target: /etc/traefik/traefik.dynamic.toml
+      - source: traefik_default.crt.2019-11-18
+        target: /certificates/traefik_default.crt
+      - source: traefik_default.key.2019-11-18
+        target: /certificates/traefik_default.key
+      - source: traefik_hello.devops.gkh.mos.ru.crt.2019-11-18
+        target: /certificates/traefik_hello.devops.gkh.mos.ru.crt
+      - source: traefik_hello.devops.gkh.mos.ru.key.2019-11-18
+        target: /certificates/traefik_hello.devops.gkh.mos.ru.key
+    deploy:
+      mode: global
+      # replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+        # order: start-first
+        order: stop-first
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.api.rule=hostregexp(`{host:.+}`)"
+        - "traefik.http.routers.api.service=api@internal"
+        - "traefik.http.routers.api.entrypoints=traefik"
+        - "traefik.http.routers.api.middlewares=auth-api"
+        - "traefik.http.middlewares.auth-api.basicauth.users=stats:$$apr1$$Rfk/9mg5$$3FXyd4PYt6wD9bPLCexf00"
+        - "traefik.http.services.api.loadbalancer.server.port=8080"
+        - "traefik.http.services.api.loadbalancer.passhostheader=true"
+      placement:
+        constraints:
+          - node.role == manager
+          - node.labels.proxy == true
+networks:
+  proxy:
+    external: true
+configs:
+  traefik.toml.2019-11-18:
+    external: true
+  traefik.dynamic.toml.2019-11-18:
+    external: true
+  traefik_default.crt.2019-11-18:
+    external: true
+  traefik_default.key.2019-11-18:
+    external: true
+  traefik_hello.devops.gkh.mos.ru.crt.2019-11-18:
+    external: true
+  traefik_hello.devops.gkh.mos.ru.key.2019-11-18:
+    external: true

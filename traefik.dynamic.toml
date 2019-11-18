@@ -1,0 +1,26 @@
+# Dynamic configuration
+# https://docs.traefik.io/reference/dynamic-configuration/file/
+
+[tls.options]
+  [tls.options.default]
+    minVersion = "VersionTLS12"
+    sniStrict = true
+  [tls.options.mintls13]
+    minVersion = "VersionTLS13"
+    sniStrict = true
+
+[tls.stores]
+  [tls.stores.default]
+    [tls.stores.default.defaultCertificate]
+    certFile = "/certificates/traefik_default.crt"
+    keyFile = "/certificates/traefik_default.key"
+
+[[tls.certificates]]
+  certFile = "/certificates/traefik_default.crt"
+  keyFile = "/certificates/traefik_default.key"
+  stores = ["default"]
+
+[[tls.certificates]]
+  certFile = "certificates/traefik_hello.dev.mta4.ru.crt"
+  keyFile = "/certificates/traefik_hello.dev.mta4.ru.key"
+  stores = ["default"]
