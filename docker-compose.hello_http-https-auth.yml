@@ -17,12 +17,12 @@ services:
         window: 120s
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.hello_http.rule=Host(`hello.devops.gkh.mos.ru`)"
+        - "traefik.http.routers.hello_http.rule=Host(`hello.dev.mta4.ru`)"
         - "traefik.http.routers.hello_http.entrypoints=http"
         - "traefik.http.routers.hello_http.middlewares=redirect-to-https"
         - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
         - "traefik.http.middlewares.redirect-to-https.redirectScheme.permanent=true"
-        - "traefik.http.routers.hello_https.rule=Host(`hello.devops.gkh.mos.ru`)"
+        - "traefik.http.routers.hello_https.rule=Host(`hello.dev.mta4.ru`)"
         - "traefik.http.routers.hello_https.entrypoints=https"
         - "traefik.http.routers.hello_https.tls=true"
         - "traefik.http.routers.hello_https.tls.options=mintls13@file"
