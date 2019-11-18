@@ -23,7 +23,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /data/logs:/logs:rw
-      # - /data/tmp:/tmp:rw
     configs:
       # - source: traefik.toml.2019-11-18
       #   target: /etc/traefik/traefik.toml
