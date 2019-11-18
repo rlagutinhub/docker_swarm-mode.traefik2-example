@@ -26,6 +26,7 @@ entryPoints:
         idleTimeout: "360s"
   https:
     address: ":443"
+    transport:
       lifeCycle:
         requestAcceptGraceTimeout: "10s"
         graceTimeOut: "10s"
@@ -35,6 +36,7 @@ entryPoints:
         idleTimeout: "360s"
   traefik:
     address: ":8080"
+    transport:
       lifeCycle:
         requestAcceptGraceTimeout: "10s"
         graceTimeOut: "10s"
