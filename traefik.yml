@@ -80,8 +80,8 @@ providers:
     endpoint: "unix:///var/run/docker.sock"
     watch: true
     swarmMode: true
-    exposedByDefault: false
     # useBindPortIP: false
+    exposedByDefault: false
     swarmModeRefreshSeconds: "15s"
   rest:
     insecure: true
