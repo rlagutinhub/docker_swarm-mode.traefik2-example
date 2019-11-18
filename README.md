@@ -67,11 +67,15 @@ docker config create traefik_hello.dev.mta4.ru.crt.$(date +%F) hello.dev.mta4.ru
 
 # --
 
-docker config rm traefik.toml.$(date +%F)
-docker config rm traefik.dynamic.toml.$(date +%F)
+# docker config rm traefik.toml.$(date +%F)
+# docker config rm traefik.dynamic.toml.$(date +%F)
+# docker config create traefik.toml.$(date +%F) traefik.toml
+# docker config create traefik.dynamic.toml.$(date +%F) traefik.dynamic.toml
 
-docker config create traefik.toml.$(date +%F) traefik.toml
-docker config create traefik.dynamic.toml.$(date +%F) traefik.dynamic.toml
+docker config rm traefik.yml.$(date +%F)
+docker config rm traefik.dynamic.yml.$(date +%F)
+docker config create traefik.yml.$(date +%F) traefik.yml
+docker config create traefik.dynamic.yml.$(date +%F) traefik.dynamic.yml
 
 docker pull traefik:latest
 
