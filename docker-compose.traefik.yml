@@ -32,10 +32,10 @@ services:
         target: /certificates/traefik_default.crt
       - source: traefik_default.key.2019-11-18
         target: /certificates/traefik_default.key
-      - source: traefik_hello.devops.gkh.mos.ru.crt.2019-11-18
-        target: /certificates/traefik_hello.devops.gkh.mos.ru.crt
-      - source: traefik_hello.devops.gkh.mos.ru.key.2019-11-18
-        target: /certificates/traefik_hello.devops.gkh.mos.ru.key
+      - source: traefik_hello.dev.mta4.ru.crt.2019-11-18
+        target: /certificates/traefik_hello.dev.mta4.ru.crt
+      - source: traefik_hello.dev.mta4.ru.key.2019-11-18
+        target: /certificates/traefik_hello.dev.mta4.ru.key
     deploy:
       mode: global
       # replicas: 1
