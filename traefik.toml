@@ -83,6 +83,7 @@
     swarmMode = true
     # useBindPortIP = false
     exposedByDefault = false
+    network = "proxy"
     swarmModeRefreshSeconds = "15s"
   [providers.rest]
     insecure = true
