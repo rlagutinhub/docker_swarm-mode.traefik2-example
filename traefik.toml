@@ -34,6 +34,26 @@
         readTimeout = "10s"
         writeTimeout = "10s"
         idleTimeout = "360s"
+  [entryPoints.tcp30000]
+    address = ":30000"
+    [entryPoints.https.transport]
+      [entryPoints.https.transport.lifeCycle]
+        requestAcceptGraceTimeout = "10s"
+        graceTimeOut = "10s"
+      [entryPoints.https.transport.respondingTimeouts]
+        readTimeout = "10s"
+        writeTimeout = "10s"
+        idleTimeout = "360s"
+  [entryPoints.tcp30001]
+    address = ":30001"
+    [entryPoints.https.transport]
+      [entryPoints.https.transport.lifeCycle]
+        requestAcceptGraceTimeout = "10s"
+        graceTimeOut = "10s"
+      [entryPoints.https.transport.respondingTimeouts]
+        readTimeout = "10s"
+        writeTimeout = "10s"
+        idleTimeout = "360s"
   [entryPoints.traefik]
     address = ":8080"
     [entryPoints.traefik.transport]
