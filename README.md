@@ -7,7 +7,7 @@ FYI https://docs.traefik.io/
 
 ***
 
-## Prepare
+## Install Traefik
 
 ### Generating a self-signed certificates:
 
@@ -64,6 +64,9 @@ docker config create traefik_hello.dev.mta4.ru.crt.$(date +%F) hello.dev.mta4.ru
 # docker secret create traefik_hello.dev.mta4.ru.crt.$(date +%F) hello.dev.mta4.ru.crt
 ```
 
+### Create traefik static and dynamic configs:
+
+```bash
 # docker config rm traefik.toml.$(date +%F)
 # docker config rm traefik.dynamic.toml.$(date +%F)
 # docker config create traefik.toml.$(date +%F) traefik.toml
@@ -73,13 +76,22 @@ docker config rm traefik.yml.$(date +%F)
 docker config rm traefik.dynamic.yml.$(date +%F)
 docker config create traefik.yml.$(date +%F) traefik.yml
 docker config create traefik.dynamic.yml.$(date +%F) traefik.dynamic.yml
+```
 
+### Pull latest traefik image:
+
+```bash
 docker pull traefik:latest
+```
 
+### Create overlay network for traefik:
+
+```bash
 docker network create -d overlay proxy
+```
 
-docker node update --label-add "proxy=true" docker-srv1.mta4.ru
-docker node inspect --format='{{json .Spec.Labels}}' docker-srv1.mta4.ru
+docker node update --label-add "proxy=true" docker01
+docker node inspect --format='{{json .Spec.Labels}}' docker01
 
 docker stack deploy --compose-file docker-compose.traefik.yml traefik
 docker stack rm traefik
