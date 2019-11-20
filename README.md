@@ -128,6 +128,6 @@ docker stack deploy --compose-file docker-compose.app.v8.yml hello # http+redire
 ### TCP proxying:
 
 ```bash
-docker stack deploy --compose-file docker-compose.app.v9.yml vnc # tcp 3306to30000
+docker stack deploy --compose-file docker-compose.app.v9.yml mysql # tcp 3306to30000
 docker stack deploy --compose-file docker-compose.app.v10.yml vnc # tcp 5901to30001
 ```
