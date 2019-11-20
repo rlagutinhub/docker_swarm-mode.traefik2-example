@@ -20,12 +20,13 @@ services:
         window: 120s
       labels:
         - "traefik.enable=true"
+        - "traefik.docker.network=proxy"
         - "traefik.tcp.routers.mysql_tcp.rule=HostSNI(`*`)"
         - "traefik.tcp.routers.mysql_tcp.entrypoints=tcp30001"
-        # - "traefik.tcp.routers.mysql_tcp.service=mysql_service"
         # - "traefik.tcp.routers.mysql_tcp.tls=true"
         # - "traefik.tcp.routers.mysql_tcp.tls.options=mintls13@file"
         # - "traefik.tcp.routers.mysql_tcp.tls.passthrough=true"
+        - "traefik.tcp.routers.mysql_tcp.service=mysql_service"
         - "traefik.tcp.services.mysql.loadbalancer.server.port=3306"
         - "traefik.tcp.services.mysql.loadbalancer.terminationdelay=100"
       placement:
