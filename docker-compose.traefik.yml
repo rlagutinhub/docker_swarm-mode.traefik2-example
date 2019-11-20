@@ -56,7 +56,7 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.docker.network=proxy"
-        - "traefik.http.routers.api_traefik.rule=Host(`*`)"
+        - "traefik.http.routers.api_traefik.rule=hostregexp(`{host:.+}`)"
         - "traefik.http.routers.api_traefik.service=api@internal"
         - "traefik.http.routers.api_traefik.entrypoints=traefik"
         - "traefik.http.routers.api_traefik.middlewares=auth-api"
