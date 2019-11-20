@@ -131,3 +131,11 @@ docker stack deploy --compose-file docker-compose.app.v8.yml hello # http+redire
 docker stack deploy --compose-file docker-compose.app.v9.yml mysql # tcp 3306to30000
 docker stack deploy --compose-file docker-compose.app.v10.yml vnc # tcp 5901to30001
 ```
+
+***
+
+![alt text](https://raw.githubusercontent.com/rlagutinhub/docker_swarm-mode.traefik2-example/master/screen1.png)
+![alt text](https://raw.githubusercontent.com/rlagutinhub/docker_swarm-mode.traefik2-example/master/screen2.png)
+![alt text](https://raw.githubusercontent.com/rlagutinhub/docker_swarm-mode.traefik2-example/master/screen3.png)
+![alt text](https://raw.githubusercontent.com/rlagutinhub/docker_swarm-mode.traefik2-example/master/screen4.png)
+
