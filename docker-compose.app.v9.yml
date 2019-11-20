@@ -22,7 +22,7 @@ services:
         - "traefik.enable=true"
         - "traefik.docker.network=proxy"
         - "traefik.tcp.routers.mysql_tcp.rule=HostSNI(`*`)"
-        - "traefik.tcp.routers.mysql_tcp.entrypoints=tcp30001"
+        - "traefik.tcp.routers.mysql_tcp.entrypoints=tcp30000"
         - "traefik.tcp.routers.mysql_tcp.service=mysql"
         - "traefik.tcp.services.mysql.loadbalancer.server.port=3306"
         - "traefik.tcp.services.mysql.loadbalancer.terminationdelay=100"
