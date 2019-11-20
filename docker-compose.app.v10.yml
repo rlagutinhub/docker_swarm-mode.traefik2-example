@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+  app:
+    image: consol/centos-xfce-vnc:latest
+    networks:
+       - proxy
+    environment:
+      - "VNC_COL_DEPTH=24"
+      - "VNC_RESOLUTION=1920x1080"
+      - "VNC_PW=password"
+    shm_size: 256mb
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=proxy"
+        - "traefik.tcp.routers.vnc_tcp.rule=HostSNI(`*`)"
+        - "traefik.tcp.routers.vnc_tcp.entrypoints=tcp30000"
+        - "traefik.tcp.routers.vnc_tcp.tls=true"
+        - "traefik.tcp.routers.vnc_tcp.tls.options=mintls13@file"
+        - "traefik.tcp.routers.vnc_tcp.tls.passthrough=true"
+        - "traefik.tcp.routers.vnc_tcp.service=vnc"
+        - "traefik.tcp.services.vnc.loadbalancer.server.port=5901"
+        - "traefik.tcp.services.vnc.loadbalancer.terminationdelay=100"
+      placement:
+        constraints: [node.role == manager]
+networks:
+  proxy:
+    external: true
