@@ -6,7 +6,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
     networks:
-       - proxy
+      - proxy
     deploy:
       replicas: 1
       update_config:
