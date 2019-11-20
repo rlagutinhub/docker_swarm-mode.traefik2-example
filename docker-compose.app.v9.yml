@@ -27,7 +27,10 @@ services:
         - "traefik.tcp.services.mysql.loadbalancer.server.port=3306"
         - "traefik.tcp.services.mysql.loadbalancer.terminationdelay=100"
       placement:
-        constraints: [node.role == manager]
+        constraints:
+          # - node.role == manager
+          - node.role == worker
+          - node.labels.hello == true
 networks:
   proxy:
     external: true
