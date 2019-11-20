@@ -115,38 +115,19 @@ docker stack deploy --compose-file docker-compose.traefik.yml traefik
 docker build -t hello -f Dockerfile .
 ```
 ```bash
-# build docker image hello
-docker stack deploy --compose-file docker-compose.app.vN.yml hello
+docker stack deploy --compose-file docker-compose.app.v1.yml hello # http
+docker stack deploy --compose-file docker-compose.app.v2.yml hello # https
+docker stack deploy --compose-file docker-compose.app.v3.yml hello # http+https
+docker stack deploy --compose-file docker-compose.app.v4.yml hello # http+redirect+https
+docker stack deploy --compose-file docker-compose.app.v5.yml hello # http+redirect+https+auth
+docker stack deploy --compose-file docker-compose.app.v6.yml hello # http+sticky
+docker stack deploy --compose-file docker-compose.app.v7.yml hello # http+https+sticky
+docker stack deploy --compose-file docker-compose.app.v8.yml hello # http+redirect+https+auth+sticky
 ```
 
-docker stack deploy --compose-file docker-compose.app.v2.yml hello
-docker stack deploy --compose-file docker-compose.app.v3.yml hello
-docker stack deploy --compose-file docker-compose.app.v4.yml hello
-docker stack deploy --compose-file docker-compose.app.v5.yml hello
-docker stack deploy --compose-file docker-compose.app.v6.yml hello
-docker stack deploy --compose-file docker-compose.app.v7.yml hello
-docker stack deploy --compose-file docker-compose.app.v8.yml hello
-docker stack deploy --compose-file docker-compose.app.v9.yml hello
-docker stack deploy --compose-file docker-compose.app.v10.yml hello
-docker stack rm hello
+### TCP proxying:
 
-yum install https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
-yum install mysql-community-client
-mysql -h db.dev.mta4.ru:30001 -u root -p
-
-# --
-
-hello.dev.mta4.ru
-traefik.dev.mta4.ru:8080
-
-# ---
-
-http v1
-https v2
-http+https v3
-http+redirect+https v4
-http+redirect+https+auth v5
-http+sticky v6
-http+https+sticky v7
-http+redirect+https+auth+sticky v8
-tcp v9
+```bash
+docker stack deploy --compose-file docker-compose.app.v9.yml vnc # tcp 3306to30000
+docker stack deploy --compose-file docker-compose.app.v10.yml vnc # tcp 5901to30001
+```
