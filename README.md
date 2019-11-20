@@ -97,6 +97,7 @@ docker stack deploy --compose-file docker-compose.app.v6.yml hello
 docker stack deploy --compose-file docker-compose.app.v7.yml hello
 docker stack deploy --compose-file docker-compose.app.v8.yml hello
 docker stack deploy --compose-file docker-compose.app.v9.yml hello
+docker stack deploy --compose-file docker-compose.app.v10.yml hello
 docker stack rm hello
 
 yum install https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
