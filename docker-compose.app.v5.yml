@@ -34,7 +34,10 @@ services:
         - "traefik.http.services.hello.loadbalancer.server.port=8000"
         - "traefik.http.services.hello.loadbalancer.passhostheader=true"
       placement:
-        constraints: [node.role == manager]
+        constraints:
+          # - node.role == manager
+          - node.role == worker
+          - node.labels.hello == true
 networks:
   proxy:
     external: true
