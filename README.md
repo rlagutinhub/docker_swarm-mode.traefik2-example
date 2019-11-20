@@ -90,14 +90,35 @@ docker pull traefik:latest
 docker network create -d overlay proxy
 ```
 
+### Add node label for run traefik:
+
+```bash
 docker node update --label-add "proxy=true" docker01
 docker node inspect --format='{{json .Spec.Labels}}' docker01
+```
 
+### Add node label for restricting run traefik:
+
+```bash
 docker stack deploy --compose-file docker-compose.traefik.yml traefik
-docker stack rm traefik
+# docker stack rm traefik
+```
 
+***
+
+## Examples
+
+### HTTP/HTTPS proxying:
+
+```bash
+# build docker image hello
 docker build -t hello -f Dockerfile .
-docker stack deploy --compose-file docker-compose.app.v1.yml hello
+```
+```bash
+# build docker image hello
+docker stack deploy --compose-file docker-compose.app.vN.yml hello
+```
+
 docker stack deploy --compose-file docker-compose.app.v2.yml hello
 docker stack deploy --compose-file docker-compose.app.v3.yml hello
 docker stack deploy --compose-file docker-compose.app.v4.yml hello
