@@ -101,7 +101,6 @@ docker node inspect --format='{{json .Spec.Labels}}' docker01
 
 ```bash
 docker stack deploy --compose-file docker-compose.traefik.yml traefik
-# docker stack rm traefik
 ```
 
 ***
@@ -111,8 +110,7 @@ docker stack deploy --compose-file docker-compose.traefik.yml traefik
 ### HTTP/HTTPS proxying:
 
 ```bash
-# build docker image hello
-docker build -t hello -f Dockerfile .
+docker build -t hello -f Dockerfile . # build docker image
 ```
 ```bash
 docker stack deploy --compose-file docker-compose.app.v1.yml hello # http
