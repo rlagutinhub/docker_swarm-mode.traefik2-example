@@ -64,7 +64,7 @@ docker config create traefik_hello.dev.mta4.ru.crt.$(date +%F) hello.dev.mta4.ru
 # docker secret create traefik_hello.dev.mta4.ru.crt.$(date +%F) hello.dev.mta4.ru.crt
 ```
 
-### Create traefik static and dynamic configs:
+### Create static and dynamic configs:
 
 ```bash
 # docker config rm traefik.toml.$(date +%F)
@@ -78,26 +78,26 @@ docker config create traefik.yml.$(date +%F) traefik.yml
 docker config create traefik.dynamic.yml.$(date +%F) traefik.dynamic.yml
 ```
 
-### Pull latest traefik image:
+### Pull latest image:
 
 ```bash
 docker pull traefik:latest
 ```
 
-### Create overlay network for traefik:
+### Create overlay network:
 
 ```bash
 docker network create -d overlay proxy
 ```
 
-### Add node label for run traefik:
+### Add node label for restricting:
 
 ```bash
 docker node update --label-add "proxy=true" docker01
 docker node inspect --format='{{json .Spec.Labels}}' docker01
 ```
 
-### Add node label for restricting run traefik:
+### Stack deploy:
 
 ```bash
 docker stack deploy --compose-file docker-compose.traefik.yml traefik
