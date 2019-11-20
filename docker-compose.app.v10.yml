@@ -28,7 +28,7 @@ services:
         - "traefik.enable=true"
         - "traefik.docker.network=proxy"
         - "traefik.tcp.routers.vnc_tcp.rule=HostSNI(`*`)"
-        - "traefik.tcp.routers.vnc_tcp.entrypoints=tcp30000"
+        - "traefik.tcp.routers.vnc_tcp.entrypoints=tcp30001"
         - "traefik.tcp.routers.vnc_tcp.service=vnc"
         - "traefik.tcp.services.vnc.loadbalancer.server.port=5901"
         - "traefik.tcp.services.vnc.loadbalancer.terminationdelay=100"
