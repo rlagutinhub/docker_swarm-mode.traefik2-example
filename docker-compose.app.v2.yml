@@ -3,7 +3,7 @@ services:
   app:
     image: hello:latest
     networks:
-       - proxy
+      - proxy
     deploy:
       replicas: 2
       update_config:
