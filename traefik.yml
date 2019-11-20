@@ -34,6 +34,26 @@ entryPoints:
         readTimeout: "10s"
         writeTimeout: "10s"
         idleTimeout: "360s"
+  tcp30000:
+    address: ":30000"
+    transport:
+      lifeCycle:
+        requestAcceptGraceTimeout: "10s"
+        graceTimeOut: "10s"
+      respondingTimeouts:
+        readTimeout: "10s"
+        writeTimeout: "10s"
+        idleTimeout: "360s"
+  tcp30001:
+    address: ":30001"
+    transport:
+      lifeCycle:
+        requestAcceptGraceTimeout: "10s"
+        graceTimeOut: "10s"
+      respondingTimeouts:
+        readTimeout: "10s"
+        writeTimeout: "10s"
+        idleTimeout: "360s"
   traefik:
     address: ":8080"
     transport:
