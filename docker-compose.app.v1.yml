@@ -17,8 +17,10 @@ services:
         window: 120s
       labels:
         - "traefik.enable=true"
+        - "traefik.docker.network=proxy"
         - "traefik.http.routers.hello_http.rule=Host(`hello.dev.mta4.ru`)"
         - "traefik.http.routers.hello_http.entrypoints=http"
+        - "traefik.http.routers.hello_http.service=hello"
         - "traefik.http.services.hello.loadbalancer.server.port=8000"
         - "traefik.http.services.hello.loadbalancer.passhostheader=true"
       placement:
