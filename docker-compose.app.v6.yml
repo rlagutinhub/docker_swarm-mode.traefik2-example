@@ -27,7 +27,10 @@ services:
         - "traefik.http.services.hello.loadbalancer.sticky.cookie.name=cookie-hello"
         - "traefik.http.services.hello.loadbalancer.sticky.cookie.httponly=true"
       placement:
-        constraints: [node.role == manager]
+        constraints:
+          # - node.role == manager
+          - node.role == worker
+          - node.labels.hello == true
 networks:
   proxy:
     external: true
