@@ -24,21 +24,21 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /data/logs:/logs:rw
     configs:
-      # - source: traefik.toml.2019-11-18
+      # - source: traefik.toml.2019-11-20
       #   target: /etc/traefik/traefik.toml
-      # - source: traefik.dynamic.toml.2019-11-18
+      # - source: traefik.dynamic.toml.2019-11-20
       #   target: /etc/traefik/traefik.dynamic.toml
-      - source: traefik.yml.2019-11-18
+      - source: traefik.yml.2019-11-20
         target: /etc/traefik/traefik.yml
-      - source: traefik.dynamic.yml.2019-11-18
+      - source: traefik.dynamic.yml.2019-11-20
         target: /etc/traefik/traefik.dynamic.yml
-      - source: traefik_default.crt.2019-11-18
+      - source: traefik_default.crt.2019-11-20
         target: /certificates/traefik_default.crt
-      - source: traefik_default.key.2019-11-18
+      - source: traefik_default.key.2019-11-20
         target: /certificates/traefik_default.key
-      - source: traefik_hello.dev.mta4.ru.crt.2019-11-18
+      - source: traefik_hello.dev.mta4.ru.crt.2019-11-20
         target: /certificates/traefik_hello.dev.mta4.ru.crt
-      - source: traefik_hello.dev.mta4.ru.key.2019-11-18
+      - source: traefik_hello.dev.mta4.ru.key.2019-11-20
         target: /certificates/traefik_hello.dev.mta4.ru.key
     deploy:
       mode: global
@@ -70,19 +70,19 @@ networks:
   proxy:
     external: true
 configs:
-  # traefik.toml.2019-11-18:
+  # traefik.toml.2019-11-20:
   #   external: true
-  # traefik.dynamic.toml.2019-11-18:
+  # traefik.dynamic.toml.2019-11-20:
   #   external: true
-  traefik.yml.2019-11-18:
+  traefik.yml.2019-11-20:
     external: true
-  traefik.dynamic.yml.2019-11-18:
+  traefik.dynamic.yml.2019-11-20:
     external: true
-  traefik_default.crt.2019-11-18:
+  traefik_default.crt.2019-11-20:
     external: true
-  traefik_default.key.2019-11-18:
+  traefik_default.key.2019-11-20:
     external: true
-  traefik_hello.dev.mta4.ru.crt.2019-11-18:
+  traefik_hello.dev.mta4.ru.crt.2019-11-20:
     external: true
-  traefik_hello.dev.mta4.ru.key.2019-11-18:
+  traefik_hello.dev.mta4.ru.key.2019-11-20:
     external: true
