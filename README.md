@@ -137,3 +137,6 @@ docker stack deploy --compose-file docker-compose.app.v10.yml vnc # tcp 5901to30
 ![alt text](https://raw.githubusercontent.com/rlagutinhub/docker_swarm-mode.traefik2-example/master/screen3.png)
 ![alt text](https://raw.githubusercontent.com/rlagutinhub/docker_swarm-mode.traefik2-example/master/screen4.png)
 
+## Addition
+___
+* [letsencrypt wildcard example](https://github.com/rlagutinhub/docker_swarm-mode.traefik2-example/blob/master/docker-compose.le.wildcard.example.yml)
