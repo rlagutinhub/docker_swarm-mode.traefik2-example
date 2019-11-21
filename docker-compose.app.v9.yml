@@ -30,7 +30,7 @@ services:
         constraints:
           # - node.role == manager
           - node.role == worker
-          - node.labels.hello == true
+          - node.labels.mysql == true
 networks:
   proxy:
     external: true
