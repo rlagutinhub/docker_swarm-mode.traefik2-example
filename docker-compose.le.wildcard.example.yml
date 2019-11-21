@@ -1,0 +1,45 @@
+# letsencrypt wildcard certificates with traefik 2
+# example for dnschallenge and provider Cloudflare
+# https://docs.traefik.io/https/acme/#wildcard-domains
+
+version: "3.7"
+
+services:
+
+  traefik:
+    image: traefik:latest
+    command:
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --api.dashboard=true
+      - --providers.docker=true
+      - --global.sendAnonymousUsage=true
+      # - --log.level=DEBUG
+      - --certificatesresolvers.basic.acme.email=postmaster@mydomain.com
+      - --certificatesresolvers.basic.acme.storage=/le/acme.json
+      - --certificatesresolvers.basic.acme.dnschallenge.provider=cloudflare
+      # - --certificatesresolvers.basic.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    labels:
+      - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.http-catchall.entrypoints=web"
+      - "traefik.http.routers.http-catchall.middlewares=redirect-to-https@docker"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+    volumes:
+      - "./acme.json:/le/acme.json"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    environment:
+      - CLOUDFLARE_EMAIL=foo@bar.com
+      - CLOUDFLARE_API_KEY=mykey
+
+  whoami:
+    image: containous/whoami
+    labels:
+      - "traefik.http.routers.whoami.rule=Host(`mydomain.com`)"
+      - "traefik.http.routers.whoami.entrypoints=websecure"
+      - "traefik.http.routers.whoami.tls.certresolver=basic"
+      - "traefik.http.routers.whoami.tls.domains[0].main=mydomain.com"
+      - "traefik.http.routers.whoami.tls.domains[0].sans=*.mydomain.com"
