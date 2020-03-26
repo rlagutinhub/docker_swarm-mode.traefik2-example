@@ -1,0 +1,116 @@
+# Static configuration
+# https://docs.traefik.io/reference/static-configuration/file/
+
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+
+serversTransport:
+  insecureSkipVerify: true
+  maxIdleConnsPerHost: "100"
+  forwardingTimeouts:
+    dialTimeout: "100s"
+    responseHeaderTimeout: "100s"
+    idleConnTimeout: "360s"
+
+entryPoints:
+  http:
+    address: ":80"
+    transport:
+      lifeCycle:
+        requestAcceptGraceTimeout: "100s"
+        graceTimeOut: "100s"
+      respondingTimeouts:
+        readTimeout: "100s"
+        writeTimeout: "100s"
+        idleTimeout: "360s"
+  https:
+    address: ":443"
+    transport:
+      lifeCycle:
+        requestAcceptGraceTimeout: "100s"
+        graceTimeOut: "100s"
+      respondingTimeouts:
+        readTimeout: "100s"
+        writeTimeout: "100s"
+        idleTimeout: "360s"
+  tcp30000:
+    address: ":30000"
+    transport:
+      lifeCycle:
+        requestAcceptGraceTimeout: "100s"
+        graceTimeOut: "100s"
+      respondingTimeouts:
+        readTimeout: "100s"
+        writeTimeout: "100s"
+        idleTimeout: "360s"
+  tcp30001:
+    address: ":30001"
+    transport:
+      lifeCycle:
+        requestAcceptGraceTimeout: "100s"
+        graceTimeOut: "100s"
+      respondingTimeouts:
+        readTimeout: "100s"
+        writeTimeout: "100s"
+        idleTimeout: "360s"
+  traefik:
+    address: ":8080"
+    transport:
+      lifeCycle:
+        requestAcceptGraceTimeout: "100s"
+        graceTimeOut: "100s"
+      respondingTimeouts:
+        readTimeout: "100s"
+        writeTimeout: "100s"
+        idleTimeout: "360s"
+
+log:
+  level: "INFO" # DEBUG, INFO, WARN, ERROR, FATAL, PANIC
+  filePath: "/logs/traefik/traefik.log"
+  format: "common"
+
+accessLog:
+  filePath: "/logs/traefik/access.log"
+  format: "common"
+  bufferingSize: "100"
+#   fields:
+#     defaultMode: "keep"
+#     headers:
+#       defaultMode: "keep"
+#       names:
+#           # User-Agent: redact
+#           Authorization: drop
+#           # Content-Type: keep
+
+api:
+  insecure: false
+  dashboard: true
+  debug: false
+
+ping:
+  entryPoint: "traefik"
+
+providers:
+  providersThrottleDuration: "2s"
+  file:
+    filename: "/etc/traefik/traefik.dynamic.yml"
+    watch: true
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    watch: true
+    swarmMode: true
+    # useBindPortIP: false
+    exposedByDefault: false
+    network: "proxy"
+    swarmModeRefreshSeconds: "15s"
+  rest:
+    insecure: true
+
+# certificatesResolvers:
+#   letsencrypt:
+#     acme:
+#       email: your-email@your-domain.org
+#       storage: "/certificates/acme/acme.json"
+#       httpChallenge:
+#         entryPoint: "http"
