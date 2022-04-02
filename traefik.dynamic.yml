@@ -5,25 +5,21 @@ tls:
   options:
     default:
       minVersion: VersionTLS12
-      sniStrict: true
+      # sniStrict: true # not work def cert
     mintls13:
       minVersion: VersionTLS13
-      sniStrict: true
-
-tls:
+      # sniStrict: true # not work def cert
   stores:
     default:
       defaultCertificate:
         certFile: "/certificates/traefik_default.crt"
         keyFile: "/certificates/traefik_default.key"
-
-tls:
   certificates:
     - certFile: "/certificates/traefik_default.crt"
       keyFile: "/certificates/traefik_default.key"
       stores:
         - default
-    - certFile: "/certificates/traefik_hello.dev.mta4.ru.crt"
-      keyFile: "/certificates/traefik_hello.dev.mta4.ru.key"
+    - certFile: "/certificates/traefik_hello.eirc.mos.ru.crt"
+      keyFile: "/certificates/traefik_hello.eirc.mos.ru.key"
       stores:
         - default
