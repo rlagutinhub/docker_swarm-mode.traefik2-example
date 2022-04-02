@@ -4,10 +4,10 @@
 [tls.options]
   [tls.options.default]
     minVersion = "VersionTLS12"
-    sniStrict = true
+    # sniStrict = true # not work def cert
   [tls.options.mintls13]
     minVersion = "VersionTLS13"
-    sniStrict = true
+    # sniStrict = true # not work def cert
 
 [tls.stores]
   [tls.stores.default]
