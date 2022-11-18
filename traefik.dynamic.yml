@@ -15,10 +15,6 @@ tls:
         certFile: "/certificates/traefik_default.crt"
         keyFile: "/certificates/traefik_default.key"
   certificates:
-    - certFile: "/certificates/traefik_default.crt"
-      keyFile: "/certificates/traefik_default.key"
-      stores:
-        - default
     - certFile: "/certificates/traefik_hello.eirc.mos.ru.crt"
       keyFile: "/certificates/traefik_hello.eirc.mos.ru.key"
       stores:
